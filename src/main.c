@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minilibx_macos/mlx.h"
+#include <stdio.h>
 
 typedef struct s_vars
 {
@@ -18,9 +19,13 @@ typedef struct s_vars
 	void *win_ptr;
 } t_vars;
 
-int close(t_vars *vars)
+int close(int key, t_vars *vars)
 {
-	mlx_destroy_window(vars->mlx_ptr, vars->mlx_ptr);
+	if (key == 53)
+	{
+		mlx_destroy_window(vars->mlx_ptr, vars->mlx_ptr);
+		return (0);
+	}
 	return (0);
 }
 
@@ -64,6 +69,6 @@ int main(void)
 		}
 	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
 
-	mlx_hook(vars.win_ptr, 2, 1L << 0, close, &vars);
+	mlx_hook(vars.win_ptr, 2, 0, close, &vars);
 	mlx_loop(vars.mlx_ptr);
 }
