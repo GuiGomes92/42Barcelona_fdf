@@ -12,10 +12,15 @@
 
 #include "../minilibx_macos/mlx.h"
 
-int main(void)
+typedef struct s_vars
 {
 	void *mlx_ptr;
 	void *win_ptr;
+} t_vars;
+
+int main(void)
+{
+	t_vars vars;
 	void *image;
 	int pixel_bits;
 	int line_bytes;
@@ -23,13 +28,13 @@ int main(void)
 	char *buffer;
 	int color = 0xFFFFFF;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 1000, 1000, "My first window");
-	image = mlx_new_image(mlx_ptr, 1000, 1000);
+	vars.mlx_ptr = mlx_init();
+	vars.win_ptr = mlx_new_window(vars.mlx_ptr, 1000, 1000, "My first window");
+	image = mlx_new_image(vars.mlx_ptr, 1000, 1000);
 	buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
 
 	if (pixel_bits != 32)
-		color = mlx_get_color_value(mlx_ptr, color);
+		color = mlx_get_color_value(vars.mlx_ptr, color);
 
 	for (int y = 0; y < 1000; ++y)
 		for (int x = 0; x < 1000; ++x)
@@ -51,6 +56,6 @@ int main(void)
 				buffer[pixel + 3] = (color >> 24);
 			}
 		}
-	mlx_put_image_to_window(mlx_ptr, win_ptr, image, 0, 0);
-	mlx_loop(mlx_ptr);
+	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
+	mlx_loop(vars.mlx_ptr);
 }
