@@ -19,9 +19,9 @@ typedef struct s_vars
 	void *win_ptr;
 } t_vars;
 
-int close(int key, t_vars *vars)
+int close(int keycode, t_vars *vars)
 {
-	if (key == 53)
+	if (keycode == 27)
 	{
 		mlx_destroy_window(vars->mlx_ptr, vars->mlx_ptr);
 		return (0);
