@@ -73,7 +73,13 @@ $(OBJF):
 
 $(MINILIBX):
 	@make -C $(MINILIBX_DIR)
-	@echo "$(GREEN)Minilibx compiled!$(DEF_COLOR)"			
+	@echo "$(GREEN)Minilibx compiled!$(DEF_COLOR)"		
+
+clean:
+			@make clean -C $(MINILIBX_DIR)
+			@echo "$(CYAN)Minilibx object files cleaned.$(DEF_COLOR)"	
+			$(RM) -rf $(OBJ_DIR)
+			@echo "$(CYAN)Fdf object files cleaned!$(DEF_COLOR)"	
 
 
-.PHONY:		all clean fclean re norm
+.PHONY:		all clean
