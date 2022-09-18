@@ -18,6 +18,12 @@ typedef struct s_vars
 	void *win_ptr;
 } t_vars;
 
+int close(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx_ptr, vars->mlx_ptr);
+	return (0);
+}
+
 int main(void)
 {
 	t_vars vars;
@@ -57,5 +63,7 @@ int main(void)
 			}
 		}
 	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
+
+	mlx_hook(vars.win_ptr, 2, 1L << 0, close, &vars);
 	mlx_loop(vars.mlx_ptr);
 }
