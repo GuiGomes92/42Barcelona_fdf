@@ -21,11 +21,9 @@ typedef struct s_vars
 
 int close(int keycode, t_vars *vars)
 {
-	if (keycode == 27)
-	{
-		mlx_destroy_window(vars->mlx_ptr, vars->mlx_ptr);
-		return (0);
-	}
+	mlx_destroy_window(vars->mlx_ptr, vars->mlx_ptr);
+	printf("%s", "Hello");
+	printf("%i", keycode);
 	return (0);
 }
 

@@ -79,7 +79,17 @@ clean:
 			@make clean -C $(MINILIBX_DIR)
 			@echo "$(CYAN)Minilibx object files cleaned.$(DEF_COLOR)"	
 			$(RM) -rf $(OBJ_DIR)
-			@echo "$(CYAN)Fdf object files cleaned!$(DEF_COLOR)"	
+			@echo "$(CYAN)Fdf object files cleaned!$(DEF_COLOR)"
+
+fclean:		clean
+			$(RM) -f $(NAME)
+			@echo "$(CYAN)Fdf executable files cleaned!$(DEF_COLOR)"
+			$(RM) -f $(MINILIBX_DIR)libmlx.a
+			@echo "$(CYAN)libmlx.a lib cleaned!$(DEF_COLOR)"
+
+re:			fclean 
+			@$(MAKE)	
+			@echo "$(GREEN)Cleaned and rebuilt everything for Fdf!$(DEF_COLOR)"
 
 
-.PHONY:		all clean
+.PHONY:		all clean fclean re
