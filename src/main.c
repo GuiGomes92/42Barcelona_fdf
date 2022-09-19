@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minilibx_macos/mlx.h"
+#include "../inc/utils.h"
 #include "../inc/hooks.h"
 #include "../inc/defines.h"
 #include <stdio.h>
@@ -23,7 +24,7 @@ int main(void)
 	int line_bytes;
 	int endian;
 	char *buffer;
-	int color = 0xFFFFFF;
+	int color = 0xFF7638;
 
 	vars.mlx_ptr = mlx_init();
 	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINX, WINY, "My first window");
@@ -32,27 +33,7 @@ int main(void)
 
 	if (pixel_bits != 32)
 		color = mlx_get_color_value(vars.mlx_ptr, color);
-
-	for (int y = 0; y < WINY; ++y)
-		for (int x = 0; x < WINX; ++x)
-		{
-			int pixel = (y * line_bytes) + (x * 4);
-
-			if (endian == 1) // Most significant (Alpha) byte first
-			{
-				buffer[pixel + 0] = (color >> 24);
-				buffer[pixel + 1] = (color >> 16) & 0xFF;
-				buffer[pixel + 2] = (color >> 8) & 0xFF;
-				buffer[pixel + 3] = (color)&0xFF;
-			}
-			else if (endian == 0) // Least significant (Blue) byte first
-			{
-				buffer[pixel + 0] = (color)&0xFF;
-				buffer[pixel + 1] = (color >> 8) & 0xFF;
-				buffer[pixel + 2] = (color >> 16) & 0xFF;
-				buffer[pixel + 3] = (color >> 24);
-			}
-		}
+	draw(buffer, color, endian, line_bytes);
 	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
 	mlx_hook(vars.win_ptr, 2, 0, &close, &vars);
 	mlx_loop(vars.mlx_ptr);
