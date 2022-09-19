@@ -21,9 +21,9 @@ typedef struct s_vars
 
 int close(int keycode, t_vars *vars)
 {
-	mlx_destroy_window(vars->mlx_ptr, vars->mlx_ptr);
-	printf("%s", "Hello");
-	printf("%i", keycode);
+	if (keycode == 53)
+		mlx_destroy_window(vars->mlx_ptr, vars->win_ptr);
+	printf("Keypress: %d\n", keycode);
 	return (0);
 }
 
@@ -66,7 +66,6 @@ int main(void)
 			}
 		}
 	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
-
-	mlx_hook(vars.win_ptr, 2, 0, close, &vars);
+	mlx_hook(vars.win_ptr, 2, 0, &close, &vars);
 	mlx_loop(vars.mlx_ptr);
 }
