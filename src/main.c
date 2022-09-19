@@ -26,15 +26,15 @@ int main(void)
 	int color = 0xFFFFFF;
 
 	vars.mlx_ptr = mlx_init();
-	vars.win_ptr = mlx_new_window(vars.mlx_ptr, 1000, 1000, "My first window");
-	image = mlx_new_image(vars.mlx_ptr, 1000, 1000);
+	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINX, WINY, "My first window");
+	image = mlx_new_image(vars.mlx_ptr, WINX, WINY);
 	buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
 
 	if (pixel_bits != 32)
 		color = mlx_get_color_value(vars.mlx_ptr, color);
 
-	for (int y = 0; y < 1000; ++y)
-		for (int x = 0; x < 1000; ++x)
+	for (int y = 0; y < WINY; ++y)
+		for (int x = 0; x < WINX; ++x)
 		{
 			int pixel = (y * line_bytes) + (x * 4);
 
