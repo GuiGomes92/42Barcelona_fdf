@@ -26,7 +26,7 @@ LIB				:= lib/
 MINILIBX_DIR	:= minilibx_macos/
 MINILIBX		:= $(MINILIBX_DIR)libmlx.a
 MINILIBXCC		:= -I mlx -L $(MINILIBX_DIR) -lmlx
-HEADER 			:= -I$(INC) -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
+HEADER 			:= -I$(INC) -I$(MINILIBX_DIR)
 OPENGL			:= -framework OpenGL -framework AppKit
 
 # Colors
