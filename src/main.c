@@ -11,21 +11,9 @@
 /* ************************************************************************** */
 
 #include "../minilibx_macos/mlx.h"
+#include "../inc/hooks.h"
+#include "../inc/defines.h"
 #include <stdio.h>
-
-typedef struct s_vars
-{
-	void *mlx_ptr;
-	void *win_ptr;
-} t_vars;
-
-int close(int keycode, t_vars *vars)
-{
-	if (keycode == 53)
-		mlx_destroy_window(vars->mlx_ptr, vars->win_ptr);
-	printf("Keypress: %d\n", keycode);
-	return (0);
-}
 
 int main(void)
 {
