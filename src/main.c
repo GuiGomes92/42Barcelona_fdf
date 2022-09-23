@@ -17,33 +17,58 @@
 #include <math.h>
 #include <stdio.h>
 
-int draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color)
+// int draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color)
+// {
+// 	double deltaX;
+// 	double deltaY;
+// 	int pixels;
+// 	double pixelX;
+// 	double pixelY;
+
+// 	deltaX = endX - beginX;
+// 	deltaY = endY - beginY;
+// 	pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
+
+// 	deltaX /= pixels;
+// 	deltaY /= pixels;
+
+// 	pixelX = beginX;
+// 	pixelY = beginY;
+
+// 	while (pixels)
+// 	{
+// 		mlx_pixel_put(mlx, win, pixelX, pixelY, color);
+// 		pixelX += deltaX;
+// 		pixelY += deltaY;
+// 		--pixels;
+// 	}
+// 	return (0);
+// }
+
+void draw_line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color)
 {
-	double deltaX;
-	double deltaY;
-	int pixels;
-	double pixelX;
-	double pixelY;
-
-	deltaX = endX - beginX;
-	deltaY = endY - beginY;
-	pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
-
-	deltaX /= pixels;
-	deltaY /= pixels;
-
-	pixelX = beginX;
-	pixelY = beginY;
-
-	while (pixels)
+	// Calculate "deltas" of the line (difference between two ending points)
+	int dx = x1 - x0;
+	int dy = y1 - y0;
+	// Calculate the line equation based on deltas
+	int D = (2 * dy) - dx;
+	int y = y0;
+	// Draw the line based on arguments provided
+	int x;
+	x = x0;
+	while (x < x1)
 	{
-		mlx_pixel_put(mlx, win, pixelX, pixelY, color);
-		pixelX += deltaX;
-		pixelY += deltaY;
-		--pixels;
+		// Place pixel on the raster display
+		mlx_pixel_put(mlx, win, x, y, color);
+		if (D >= 0)
+		{
+			y = y + 1;
+			D = D - 2 * dx;
+		}
+		D = D + 2 * dy;
+		x++;
 	}
-	return (0);
-}
+};
 
 int main(void)
 {
@@ -64,7 +89,9 @@ int main(void)
 		color = mlx_get_color_value(vars.mlx_ptr, color);
 	draw(buffer, color, endian, line_bytes);
 	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
-	draw_line(vars.mlx_ptr, vars.win_ptr, WINX, WINY, 0, 0, 0xFFFFFF);
+	draw_line(vars.mlx_ptr, vars.win_ptr, 50, 50, 100, 100, 0xFFFFFF);
+	draw_line(vars.mlx_ptr, vars.win_ptr, 150, 150, 200, 200, 0xFFFFFF);
+	draw_line(vars.mlx_ptr, vars.win_ptr, 250, 250, 300, 300, 0xFFFFFF);
 	mlx_hook(vars.win_ptr, 2, 0, &close, &vars);
 	mlx_loop(vars.mlx_ptr);
 }
