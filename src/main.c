@@ -45,7 +45,7 @@
 // 	return (0);
 // }
 
-void draw_line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color)
+void draw_line(void *mlx, void *win, int x0, int x1, int y0, int y1, int color)
 {
 	// Calculate "deltas" of the line (difference between two ending points)
 	int dx = x1 - x0;
@@ -79,6 +79,8 @@ int main(void)
 	int endian;
 	char *buffer;
 	int color = 0x000000;
+	int quarterX = WINX / 4;
+	int quarterY = WINY / 4;
 
 	vars.mlx_ptr = mlx_init();
 	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINX, WINY, "My first window");
@@ -89,9 +91,7 @@ int main(void)
 		color = mlx_get_color_value(vars.mlx_ptr, color);
 	draw(buffer, color, endian, line_bytes);
 	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
-	draw_line(vars.mlx_ptr, vars.win_ptr, 50, 50, 100, 100, 0xFFFFFF);
-	draw_line(vars.mlx_ptr, vars.win_ptr, 150, 150, 200, 200, 0xFFFFFF);
-	draw_line(vars.mlx_ptr, vars.win_ptr, 250, 250, 300, 300, 0xFFFFFF);
+	draw_line(vars.mlx_ptr, vars.win_ptr, quarterX, quarterX * 2, quarterY * 2, quarterY * 2, 0xFFFFFF);
 	mlx_hook(vars.win_ptr, 2, 0, &close, &vars);
 	mlx_loop(vars.mlx_ptr);
 }
