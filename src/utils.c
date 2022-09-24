@@ -1,5 +1,7 @@
 #include "../inc/defines.h"
 #include "../minilibx_macos/mlx.h"
+#include <math.h>
+#include <stdlib.h>
 
 void draw(char *buffer, int color, int endian, int line_bytes)
 {
@@ -25,42 +27,116 @@ void draw(char *buffer, int color, int endian, int line_bytes)
         }
 }
 
-void draw_line(void *mlx, void *win, int x0, int x1, int y0, int y1, int color)
+void draw_line(void *mlx, void *win, int x1, int x2, int y1, int y2, int color)
 {
-    int x;
-    int y;
-    int dx;
-    int dy;
-    int dx1;
-    int dy1;
-    int px;
-    int py;
-    int xe;
-    int ye;
-    int i;
+    int x = 0;
+    int y = 0;
+    int dx = 0;
+    int dy = 0;
+    int dx1 = 0;
+    int dy1 = 0;
+    int px = 0;
+    int py = 0;
+    int xe = 0;
+    int ye = 0;
+    int i = 0;
     // Calculate "deltas" of the line (difference between two ending points)
-    dx = x1 - x0;
-    dy = y1 - y0;
-
-    if (dx < 0)
-        dx = dx * -1 if (dy < 0)
-                      dy = dx *-1
-            // Calculate the line equation based on deltas
-            int D = (2 * dy) - dx;
-    int y = y0;
-    // Draw the line based on arguments provided
-    int x;
-    x = x0;
-    while (x < x1)
+    // Calculate line deltas
+    dx = x2 - x1;
+    dy = y2 - y1;
+    // Create a positive copy of deltas (makes iterating easier)
+    dx1 = abs(dx);
+    dy1 = abs(dy);
+    // Calculate error intervals for both axis
+    px = (2 * dy1) - dx1;
+    py = (2 * dx1) - dy1;
+    // The line is X-axis dominant
+    if (dy1 <= dx1)
     {
-        // Place pixel on the raster display
-        mlx_pixel_put(mlx, win, x, y, color);
-        if (D >= 0)
+        // Line is drawn left to right
+        if (dx >= 0)
+        {
+            x = x1;
+            y = y1;
+            xe = x2;
+        }
+        else
+        { // Line is drawn right to left (swap ends)
+            x = x2;
+            y = y2;
+            xe = x1;
+        }
+        mlx_pixel_put(mlx, win, x, y, color); // Draw first pixel
+        // Rasterize the line
+        i = 0;
+        while (x < xe)
+        {
+            x = x + 1;
+            // Deal with octants...
+            if (px < 0)
+            {
+                px = px + 2 * dy1;
+            }
+            else
+            {
+                if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
+                {
+                    y = y + 1;
+                }
+                else
+                {
+                    y = y - 1;
+                }
+                px = px + 2 * (dy1 - dx1);
+            }
+            // Draw pixel from line span at
+            // currently rasterized position
+            mlx_pixel_put(mlx, win, x, y, color);
+            i++;
+        }
+    }
+    else
+    { // The line is Y-axis dominant
+        // Line is drawn bottom to top
+        if (dy >= 0)
+        {
+            x = x1;
+            y = y1;
+            ye = y2;
+        }
+        else
+        { // Line is drawn top to bottom
+            x = x2;
+            y = y2;
+            ye = y1;
+        }
+        mlx_pixel_put(mlx, win, x, y, color); // Draw first pixel
+        // Rasterize the line
+        i = 0;
+        while (y < ye)
         {
             y = y + 1;
-            D = D - 2 * dx;
+            // Deal with octants...
+            if (py <= 0)
+            {
+                py = py + 2 * dx1;
+            }
+            else
+            {
+                if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
+                {
+                    x = x + 1;
+                }
+                else
+                {
+                    x = x - 1;
+                }
+                py = py + 2 * (dx1 - dy1);
+            }
+            // Draw pixel from line span at
+            // currently rasterized position
+            mlx_pixel_put(mlx, win, x, y, color);
+            i++;
         }
-        D = D + 2 * dy;
-        x++;
     }
-};
+}

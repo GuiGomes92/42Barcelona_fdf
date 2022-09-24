@@ -54,8 +54,6 @@ int main(void)
 	int endian;
 	char *buffer;
 	int color = 0x000000;
-	int quarterX = WINX / 4;
-	int quarterY = WINY / 4;
 
 	vars.mlx_ptr = mlx_init();
 	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINX, WINY, "My first window");
@@ -66,7 +64,7 @@ int main(void)
 		color = mlx_get_color_value(vars.mlx_ptr, color);
 	draw(buffer, color, endian, line_bytes);
 	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
-	draw_line(vars.mlx_ptr, vars.win_ptr, quarterX, quarterX * 2, quarterY * 2, quarterY * 2, 0xFFFFFF);
+	draw_line(vars.mlx_ptr, vars.win_ptr, 500, 500, 500, 1000, 0xFFFFFF);
 	mlx_hook(vars.win_ptr, 2, 0, &close, &vars);
 	mlx_loop(vars.mlx_ptr);
 }
