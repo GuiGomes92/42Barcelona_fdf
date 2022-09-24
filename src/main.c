@@ -45,31 +45,6 @@
 // 	return (0);
 // }
 
-void draw_line(void *mlx, void *win, int x0, int x1, int y0, int y1, int color)
-{
-	// Calculate "deltas" of the line (difference between two ending points)
-	int dx = x1 - x0;
-	int dy = y1 - y0;
-	// Calculate the line equation based on deltas
-	int D = (2 * dy) - dx;
-	int y = y0;
-	// Draw the line based on arguments provided
-	int x;
-	x = x0;
-	while (x < x1)
-	{
-		// Place pixel on the raster display
-		mlx_pixel_put(mlx, win, x, y, color);
-		if (D >= 0)
-		{
-			y = y + 1;
-			D = D - 2 * dx;
-		}
-		D = D + 2 * dy;
-		x++;
-	}
-};
-
 int main(void)
 {
 	t_vars vars;
