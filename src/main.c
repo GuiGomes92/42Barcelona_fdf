@@ -6,7 +6,7 @@
 /*   By: gbraga-g <gbraga-g@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 20:09:46 by gbraga-g          #+#    #+#             */
-/*   Updated: 2022/09/13 20:42:21 by gbraga-g         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:07:04 by gbraga-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int main(void)
 	if (pixel_bits != 32)
 		color = mlx_get_color_value(vars.mlx_ptr, color);
 	draw(buffer, color, endian, line_bytes);
+	draw_line(vars.mlx_ptr, vars.win_ptr, 500, 1000, 500, 1000, 0xffffff);
 	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
 	mlx_hook(vars.win_ptr, 2, 0, &close, &vars);
 	mlx_loop(vars.mlx_ptr);
