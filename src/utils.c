@@ -66,7 +66,7 @@ void draw_line(void *mlx, void *win, t_pointX x_struct, t_pointY y_struct)
             y = y_struct.y2;
             xe = x_struct.x1;
         }
-        mlx_pixel_put(mlx, win, x, y, line_color ); // Draw first pixel
+        mlx_pixel_put(mlx, win, x, y, x_struct.color); // Draw first pixel
         // Rasterize the line
         i = 0;
         while (x < xe)
@@ -91,7 +91,7 @@ void draw_line(void *mlx, void *win, t_pointX x_struct, t_pointY y_struct)
             }
             // Draw pixel from line span at
             // currently rasterized position
-            mlx_pixel_put(mlx, win, x, y, line_color);
+            mlx_pixel_put(mlx, win, x, y, x_struct.color);
             i++;
         }
     }
@@ -110,7 +110,7 @@ void draw_line(void *mlx, void *win, t_pointX x_struct, t_pointY y_struct)
             y = y_struct.y2;
             ye = y_struct.y1;
         }
-        mlx_pixel_put(mlx, win, x, y, line_color); // Draw first pixel
+        mlx_pixel_put(mlx, win, x, y, x_struct.color); // Draw first pixel
         // Rasterize the line
         i = 0;
         while (y < ye)
@@ -135,7 +135,7 @@ void draw_line(void *mlx, void *win, t_pointX x_struct, t_pointY y_struct)
             }
             // Draw pixel from line span at
             // currently rasterized position
-            mlx_pixel_put(mlx, win, x, y, line_color);
+            mlx_pixel_put(mlx, win, x, y, x_struct.color);
             i++;
         }
     }

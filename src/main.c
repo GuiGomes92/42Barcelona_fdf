@@ -33,18 +33,13 @@ int main(void)
 	image = mlx_new_image(vars.mlx_ptr, WINX, WINY);
 	buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
 	x.x1 = 200;
-	x.x1 = 300;
-	y.y1 = 200;
-	y.y2 = 300;
+	x.x2 = 600;
+	y.y1 = 0;
+	y.y2 = 0;
 
 	if (pixel_bits != 32)
-	{
-		x.color = mlx_get_color_value(vars.mlx_ptr, line_color);
-		y.color = mlx_get_color_value(vars.mlx_ptr, line_color);
-	} else {
-		x.color =  line_color;
-		y.color = line_color;
-	}
+		x.color = mlx_get_color_value(vars.mlx_ptr, 0xffffff);
+
 	draw(buffer, bg_color, endian, line_bytes);
 	draw_line(vars.mlx_ptr, vars.win_ptr, x, y);
 	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
