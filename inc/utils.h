@@ -15,6 +15,6 @@
 #include "../inc/defines.h"
 
 void draw(char *buffer, int color, int endian, int line_bytes);
-void draw_line(void *mlx, void *win, int x1, int x2, int y1, int y2, int color);
+void draw_line(vars.mlx_ptr, vars.win_ptr, x, y, line_color);
 
 #endif
