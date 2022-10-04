@@ -14,6 +14,7 @@
 #include "../minilibx_macos/mlx.h"
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void draw(char *buffer, int color, int endian, int line_bytes)
 {
@@ -69,7 +70,7 @@ void draw_line(void *mlx, void *win, t_pointX x_struct, t_pointY y_struct)
         if (dx >= 0)
         {
             x = x_struct.x1;
-            y =  y_struct.y1;
+            y = y_struct.y1;
             xe = x_struct.x2;
         }
         else

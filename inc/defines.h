@@ -16,8 +16,8 @@
 #define WINX 1600
 #define WINY 800
 
-#define bg_color 0x000000
-#define line_color 0xffffff
+#define bg_color 0xffffff
+#define line_color 0x000000
 
 typedef struct s_pointY
 {
@@ -34,7 +34,6 @@ typedef struct s_pointX
     int color;
 
 } t_pointX;
-
 
 typedef struct s_vars
 {
