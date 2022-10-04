@@ -42,26 +42,20 @@ void draw(char *buffer, int color, int endian, int line_bytes)
 
 void draw_line(void *mlx, void *win, t_pointX x_point, t_pointY y_point)
 {
-	t_point	delta;
-	t_point	pixel;
+	int	deltaX;
+    int	deltaY;
 	int		pixels;
 	int		len;
 
-	if (valid_pixel(start) == 0 && valid_pixel(end) == 0)
-		return (0);
-	delta.axis[X] = end.axis[X] - start.axis[X];
-	delta.axis[Y] = end.axis[Y] - start.axis[Y];
-	pixels = sqrt((delta.axis[X] * delta.axis[X]) + \
-			(delta.axis[Y] * delta.axis[Y]));
+	deltaX = x_point.x2 - x_point.x1;
+	deltaY = y_point.y2 - y_point.y1;
+	pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
 	len = pixels;
-	delta.axis[X] /= pixels;
-	delta.axis[Y] /= pixels;
-	pixel.axis[X] = start.axis[X];
-	pixel.axis[Y] = start.axis[Y];
+	deltaX /= pixels;
+	deltaY /= pixels;
 	while (pixels > 0)
 	{
-		pixel.color = gradient(start.color, end.color, len, len - pixels);
-		my_putpixel(meta, pixel);
+		mlx_pixel_put(mlx, win, x, y, x.color);
 		pixel.axis[X] += delta.axis[X];
 		pixel.axis[Y] += delta.axis[Y];
 		pixels = pixels - 1;
