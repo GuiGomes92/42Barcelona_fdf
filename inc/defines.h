@@ -13,24 +13,23 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define WINX 1600
-#define WINY 800
+# define WINX 1920	
+# define WINY 1080
 
-#define bg_color 0xffffff
-#define line_color 0x000000
+#define bg_color 0x000000
+#define line_color 0xffffff
 
 typedef struct s_pointY
 {
-    int y1;
-    int y2;
-    int color;
+    float y1;
+    float y2;
 
 } t_pointY;
 
 typedef struct s_pointX
 {
-    int x1;
-    int x2;
+    float x1;
+    float x2;
     int color;
 
 } t_pointX;

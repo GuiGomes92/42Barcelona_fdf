@@ -20,5 +20,5 @@ int close(int keycode, t_vars *vars)
     {
         mlx_destroy_window(vars->mlx_ptr, vars->win_ptr);
     }
-    return (0);
+    exit(0);
 }
