@@ -13,11 +13,11 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-# define WINX 1920	
-# define WINY 1080
+#define WINX 1920
+#define WINY 1080
 
 #define bg_color 0x000000
-#define line_color 0xffffff
+#define line_color 0xF72811
 
 typedef struct s_pointY
 {

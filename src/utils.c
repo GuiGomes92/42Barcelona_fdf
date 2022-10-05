@@ -51,12 +51,12 @@ void draw_line(void *mlx, void *win, t_pointX x_point, t_pointY y_point)
     dx = x_point.x2 - x_point.x1;
     dy = y_point.y2 - y_point.y1;
 
-    x = x_point.x1;
-    y = y_point.y1;
+    x = (int)x_point.x1;
+    y = (int)y_point.y1;
 
     p = 2 * dy - dx;
 
-    while (x < x_point.x2)
+    while (x < (int)x_point.x2)
     {
         if (p >= 0)
         {
