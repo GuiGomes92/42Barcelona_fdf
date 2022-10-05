@@ -32,11 +32,10 @@ int main(void)
 	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINX, WINY, "My first window");
 	image = mlx_new_image(vars.mlx_ptr, WINX, WINY);
 	buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
-	x.x1 = 500;
-	x.x2 = 700;
+	x.x1 = 200;
+	x.x2 = 400;
 	y.y1 = 500;
-	y.y2 = 1000;
-	x.color = line_color;
+	y.y2 = 500;
 
 	if (pixel_bits != 32)
 		x.color = mlx_get_color_value(vars.mlx_ptr, line_color);
