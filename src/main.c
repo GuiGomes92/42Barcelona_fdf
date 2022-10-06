@@ -37,12 +37,11 @@ int main(void)
 	y.y1 = 500;
 	y.y2 = 500;
 	x.color = line_color;
-	// x.color = mlx_get_color_value(vars.mlx_ptr, line_color);
-	// if (pixel_bits != 32)
-	// 	x.color = mlx_get_color_value(vars.mlx_ptr, line_color);
+	if (pixel_bits != 32)
+	 	x.color = mlx_get_color_value(vars.mlx_ptr, line_color);
 	draw(buffer, bg_color, endian, line_bytes);
 	draw_line(vars.mlx_ptr, vars.win_ptr, x, y);
-	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
+	// mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
 	mlx_hook(vars.win_ptr, 2, 0, &close, &vars);
 	mlx_loop(vars.mlx_ptr);
 }

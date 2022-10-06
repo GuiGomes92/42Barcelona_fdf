@@ -60,7 +60,7 @@ void draw_line(void *mlx, void *win, t_pointX x_point, t_pointY y_point)
     {
         if (p >= 0)
         {
-            mlx_pixel_put(mlx, win, x, y, 0xF72811);
+            mlx_pixel_put(mlx, win, x, y, 0x00ffffff);
             y = y + 1;
             p = p + 2 * dy - 2 * dx;
         }
