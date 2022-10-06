@@ -29,16 +29,17 @@ int main(void)
 	char *buffer;
 
 	vars.mlx_ptr = mlx_init();
-	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINX, WINY, "My first window");
+	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINX, WINY, "FDF - Gui Gomes");
 	image = mlx_new_image(vars.mlx_ptr, WINX, WINY);
 	buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
 	x.x1 = 200;
 	x.x2 = 400;
 	y.y1 = 500;
 	y.y2 = 500;
-
-	if (pixel_bits != 32)
-		x.color = mlx_get_color_value(vars.mlx_ptr, line_color);
+	x.color = line_color;
+	// x.color = mlx_get_color_value(vars.mlx_ptr, line_color);
+	// if (pixel_bits != 32)
+	// 	x.color = mlx_get_color_value(vars.mlx_ptr, line_color);
 	draw(buffer, bg_color, endian, line_bytes);
 	draw_line(vars.mlx_ptr, vars.win_ptr, x, y);
 	mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
