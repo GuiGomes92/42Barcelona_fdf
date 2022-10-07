@@ -19,20 +19,15 @@
 #define bg_color 0x000000
 #define line_color 0xF72811
 
-typedef struct s_pointY
-{
-    float y1;
-    float y2;
-
-} t_pointY;
-
-typedef struct s_pointX
+typedef struct s_point
 {
     float x1;
     float x2;
+    float y1;
+    float y2;
     int color;
 
-} t_pointX;
+} t_point;
 
 typedef struct s_vars
 {

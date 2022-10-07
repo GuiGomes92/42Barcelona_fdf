@@ -40,7 +40,7 @@ void draw(char *buffer, int color, int endian, int line_bytes)
         }
 }
 
-void draw_line(void *mlx, void *win, t_pointX x_point, t_pointY y_point)
+void draw_line(void *mlx, void *win, t_point point)
 {
     int dx;
     int dy;
@@ -48,15 +48,15 @@ void draw_line(void *mlx, void *win, t_pointX x_point, t_pointY y_point)
     int x;
     int y;
 
-    dx = x_point.x2 - x_point.x1;
-    dy = y_point.y2 - y_point.y1;
+    dx = point.x2 - point.x1;
+    dy = point.y2 - point.y1;
 
-    x = (int)x_point.x1;
-    y = (int)y_point.y1;
+    x = (int)point.x1;
+    y = (int)point.y1;
 
     p = 2 * dy - dx;
 
-    while (x < (int)x_point.x2)
+    while (x < (int)point.x2)
     {
         if (p >= 0)
         {

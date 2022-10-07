@@ -20,8 +20,7 @@
 int main(void)
 {
 	t_vars vars;
-	t_pointX x;
-	t_pointY y;
+	t_point point;
 	void *image;
 	int pixel_bits;
 	int line_bytes;
@@ -32,15 +31,15 @@ int main(void)
 	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINX, WINY, "FDF - Gui Gomes");
 	image = mlx_new_image(vars.mlx_ptr, WINX, WINY);
 	buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
-	x.x1 = 200;
-	x.x2 = 400;
-	y.y1 = 500;
-	y.y2 = 500;
-	x.color = line_color;
+	point.x1 = 200;
+	point.x2 = 400;
+	point.y1 = 500;
+	point.y2 = 500;
+	point.color = line_color;
 	if (pixel_bits != 32)
-	 	x.color = mlx_get_color_value(vars.mlx_ptr, line_color);
+		point.color = mlx_get_color_value(vars.mlx_ptr, line_color);
 	draw(buffer, bg_color, endian, line_bytes);
-	draw_line(vars.mlx_ptr, vars.win_ptr, x, y);
+	draw_line(vars.mlx_ptr, vars.win_ptr, point);
 	// mlx_put_image_to_window(vars.mlx_ptr, vars.win_ptr, image, 0, 0);
 	mlx_hook(vars.win_ptr, 2, 0, &close, &vars);
 	mlx_loop(vars.mlx_ptr);
