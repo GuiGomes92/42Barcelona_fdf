@@ -31,10 +31,10 @@ int main(void)
 	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINX, WINY, "FDF - Gui Gomes");
 	image = mlx_new_image(vars.mlx_ptr, WINX, WINY);
 	buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
-	point.x1 = 200;
-	point.x2 = 400;
-	point.y1 = 500;
-	point.y2 = 500;
+	point.x1 = 400;
+	point.x2 = 800;
+	point.y1 = 200;
+	point.y2 = 200;
 	point.color = line_color;
 	if (pixel_bits != 32)
 		point.color = mlx_get_color_value(vars.mlx_ptr, line_color);

@@ -25,6 +25,7 @@ typedef struct s_point
     float x2;
     float y1;
     float y2;
+    float z;
     int color;
 
 } t_point;
